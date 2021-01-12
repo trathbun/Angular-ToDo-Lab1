@@ -1,0 +1,21 @@
+<div class="todoApp">
+
+<h1>TODO List</h1>
+<p>A place to store your todos</p>
+
+<input type="text" name="filter" placeholder="Filter your to-dos" [(ngModel)]="filter" class="filterTodo">
+
+    <div class="todoList" >
+        <ol>
+            <li class="todoLi"   *ngFor = " let todos of getFilteredResults();" >
+                <div class="container">
+                    <button *ngIf="!todos.completed" class= "completeTodo" (click)="completeTask(todos)">Complete</button> 
+                    <p [ngStyle]="todos.completed && {'text-decoration': 'line-through'}" >{{ todos.task }} </p>
+                    <button class="removeTodo" (click)="removeTask(todos.task)">X</button>
+                </div>
+            </li>
+        </ol>
+            <input #textbox [(ngModel)] = "textValue" type="text" placeholder="Add your to-do" value ="" class="addTodo">
+            <button class="submit" (click)="addTask(textbox.value)"> Add </button>
+    </div>
+</div>
